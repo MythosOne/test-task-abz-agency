@@ -1,9 +1,13 @@
+import { DeveloperList } from './DeveloperList/DeveloperList';
+
+import { Section, TitleSection } from './WorkingGetSection.styled';
 import { Button } from '@/components/Button/Button';
 
 export const WorkingGetSection = () => {
   return (
-    <section id="users">
-      <h2>Working Get Section</h2>
+    <Section id="usersSection">
+      <TitleSection>Working Get Section</TitleSection>
+      <DeveloperList />
       <Button
         variant="showMore"
         onClick={() => {
@@ -14,6 +18,6 @@ export const WorkingGetSection = () => {
       >
         Show More
       </Button>
-    </section>
+    </Section>
   );
 };

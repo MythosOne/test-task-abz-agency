@@ -1,13 +1,14 @@
-import { AssingmentDeveloperSection } from '@/components/Main/AssingmentDeveloperSection/AssingmentDeveloperSection';
+import { AssignmentDeveloperSection } from '@/components/Main/AssignmentDeveloperSection/AssignmentDeveloperSection';
 import { WorkingGetSection } from '@/components/Main/WorkingGetSection/WorkingGetSection';
 import { WorkingPostSection } from '@/components/Main/WorkingPostSection/WorkingPostSection';
+
+import { MainSection } from './Main.styled';
 export const Main = () => {
   return (
-    <main>
-      <h1>Main</h1>
-      <AssingmentDeveloperSection />
+    <MainSection>
+      <AssignmentDeveloperSection />
       <WorkingGetSection />
       <WorkingPostSection />
-    </main>
+    </MainSection>
   );
 };

@@ -1,14 +1,16 @@
-import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+
+import { CustomFormLabel, CustomRadio } from './PostRadioGroup.styled';
 
 export const PostRadioGroup = () => {
   return (
     <>
       <FormControl>
-        <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+        <CustomFormLabel id="demo-radio-buttons-group-label">
+          Select your position
+        </CustomFormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="female"
@@ -16,22 +18,22 @@ export const PostRadioGroup = () => {
         >
           <FormControlLabel
             value="frontendDeveloper"
-            control={<Radio />}
+            control={<CustomRadio />}
             label="Frontend developer"
           />
           <FormControlLabel
             value="backendDeveloper"
-            control={<Radio />}
+            control={<CustomRadio />}
             label="Backend developer"
           />
           <FormControlLabel
             value="designer"
-            control={<Radio />}
+            control={<CustomRadio />}
             label="Designer"
           />
           <FormControlLabel
             value="qualityAssuranceEngineer"
-            control={<Radio />}
+            control={<CustomRadio />}
             label="QA"
           />
         </RadioGroup>

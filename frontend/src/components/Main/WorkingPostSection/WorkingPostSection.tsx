@@ -1,10 +1,10 @@
 import { UserForm } from '@/components/Main/WorkingPostSection/PostForm/UserForm';
-
+import { Section, TitleSection } from './WorkingPostSection.styled';
 export const WorkingPostSection = () => {
   return (
-    <section id="signUp">
-      <h2>Working with POST request</h2>
+    <Section id="signUpSection">
+      <TitleSection>Working with POST request</TitleSection>
       <UserForm />      
-    </section>
+    </Section>
   );
 };

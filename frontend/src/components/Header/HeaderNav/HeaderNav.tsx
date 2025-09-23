@@ -5,10 +5,10 @@ export const HeaderNav = () => {
     <NavContainer>
       <NavList>
         <NavItem>
-          <NavLink href="users">Users</NavLink>
+          <NavLink href="#usersSection">Users</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="signUp">Sign Up</NavLink>
+          <NavLink href="#signUpSection">Sign Up</NavLink>
         </NavItem>
       </NavList>
     </NavContainer>

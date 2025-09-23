@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+// import { TextField } from '@mui/material';
 
 export const Form = styled.form`
+  width: 380px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 50px;
 `;
 
-export const Label = styled.label``;
-export const Input = styled.input``;
+// export const TextFieldStyled = styled(TextField)``;

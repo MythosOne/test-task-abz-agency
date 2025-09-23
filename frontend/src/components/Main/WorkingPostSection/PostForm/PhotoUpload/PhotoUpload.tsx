@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import {Button, Label, Span, Input} from "./PhotoUpload.styled";
+import {UpLoadButton, Label, Span, Input} from "./PhotoUpload.styled";
 
 export const PhotoUpload = () => {
   const [fileName, setFileName] = useState("Upload your photo");
@@ -21,9 +21,9 @@ export const PhotoUpload = () => {
 
   return (
     <Label>
-      <Button type="button" onClick={handleClick}>
+      <UpLoadButton type="button" onClick={handleClick}>
         Upload
-      </Button>
+      </UpLoadButton>
       <Span>{fileName}</Span>
       <Input
         type="file"

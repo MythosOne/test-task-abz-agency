@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 
 export const NavContainer = styled.nav``;
+
 export const NavList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   list-style: none;
 `;
 export const NavItem = styled.li`
