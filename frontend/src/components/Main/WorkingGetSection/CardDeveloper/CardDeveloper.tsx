@@ -11,32 +11,38 @@ import {
   UserInfo,
 } from './CardDeveloper.styled';
 import { Tooltip } from '@mui/material';
-export const CardDeveloper = () => {
+
+type User = {
+  name: string;
+  email: string;
+  phone: string;
+  position: string;
+  avatar: string;
+};
+
+interface CardDeveloperProps {
+  user: User;
+}
+export const CardDeveloper: React.FC<CardDeveloperProps> = ({ user }) => {
+  const { name, email, phone, position } = user;
   return (
     <Card>
       <WrapperUserAvatar>
         <UserAvatar />
       </WrapperUserAvatar>
       <UserName>
-        <Tooltip title="Salvador Stewart Flynn Thomas Salva Salvered">
-          <Name>Salvador Stewart Flynn Thomas Salva Salvered............</Name>
+        <Tooltip title={name}>
+          <Name>{name}</Name>
         </Tooltip>
       </UserName>
       <UserInfo>
-        <Tooltip title="Leading specialist of the department of cent">
-          <Position>
-            Leading specialist of the department of cent.....................
-          </Position>
+        <Tooltip title={position}>
+          <Position>{position}</Position>
         </Tooltip>
-        <Tooltip title="frontend_develop@gmail.com">
-          <Email
-            href="mailto:frontend_develop@gmail.com"
-            // title="rontend_develop@gmail.com"
-          >
-            frontend_develop@gmail.com
-          </Email>
+        <Tooltip title={email}>
+          <Email href={email}>{email}</Email>
         </Tooltip>
-        <Phone href="tel:+380982784424">+38 (098) 278 44 24</Phone>
+        <Phone href={phone}>{phone}</Phone>
       </UserInfo>
     </Card>
   );

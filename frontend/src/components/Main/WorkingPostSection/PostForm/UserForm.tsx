@@ -11,6 +11,7 @@ export const UserForm = () => {
       <PostRadioGroup />
       <PhotoUpload />
       <Button
+        style={{ marginTop: '-18px' }}
         variant="signUp"
         onClick={() => {
           console.log('click Sign Up');

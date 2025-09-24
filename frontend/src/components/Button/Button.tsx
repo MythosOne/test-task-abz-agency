@@ -1,6 +1,6 @@
 import { StyledButton } from './Button.styled';
 
-type ButtonProps = {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &{
   children: React.ReactNode;
   variant?: 'showMore' | 'signUp';
   onClick?: () => void;

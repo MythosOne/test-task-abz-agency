@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 type ButtonProps = {
-    variant?: 'showMore' | 'signUp';
-    disabled?: boolean;
-}
+  variant?: 'showMore' | 'signUp';
+  disabled?: boolean;
+};
 
 export const StyledButton = styled.button<ButtonProps>`
   height: 34px;
