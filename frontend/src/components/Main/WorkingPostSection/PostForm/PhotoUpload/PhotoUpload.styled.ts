@@ -50,5 +50,5 @@ export const ErrorMessage = styled.span<{ isVisible: boolean }>`
   color: red;
   font-size: 14px;
 
-  visibility: ${({ isVisible }) => (!isVisible ? 'hidden' : 'visible')}; 
+  visibility: ${({ isVisible }) => (!isVisible ? 'hidden' : 'visible')};
 `;

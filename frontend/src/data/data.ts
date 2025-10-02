@@ -47,4 +47,20 @@ export const dataUser = [
     position: 'Co-Founder and CEO',
     avatar: 'frontend/src/assets/photo-cover.svg',
   },
+  {
+    id: 7,
+    name: 'Takamaru Ayako Jurrien',
+    email: 'Takamuru@gmail.com',
+    phone: '+38 (098) 278 90 24',
+    position: 'Lead Independent Director ',
+    avatar: 'frontend/src/assets/photo-cover.svg',
+  },
+  {
+    id: 8,
+    name: 'Ilya Goncharov',
+    email: 'Ilya_founder@gmail.com',
+    phone: '+38 (098) 235 44 24',
+    position: 'Co-Founder and CEO',
+    avatar: 'frontend/src/assets/photo-cover.svg',
+  },
 ];

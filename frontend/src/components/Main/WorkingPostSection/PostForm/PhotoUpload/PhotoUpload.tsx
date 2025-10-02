@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   UploadContainer,
@@ -11,9 +11,27 @@ import {
 
 const FILE_SIZE_LIMIT = 5 * 1024 * 1024; // 5MB
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg'];
-export const PhotoUpload = () => {
+
+type PhotoUploadProps = {
+  onSubmitData: (photo: File | null) => void;
+  resetForm: number;
+};
+export const PhotoUpload: React.FC<PhotoUploadProps> = ({
+  onSubmitData,
+  resetForm,
+}) => {
   const [fileName, setFileName] = useState('Upload your photo');
   const [fileError, setFileError] = useState('');
+  const [photo, setPhoto] = useState<File | null>(null);
+
+  useEffect(() => {
+    if (photo !== null) {
+      onSubmitData(photo);
+    }
+  }, [photo, onSubmitData]);
+
+  // console.log("Photo file:", photo);
+  // console.log("Photo file name:", fileName);
   const handleClick = () => {
     const fileInput =
       document.querySelector<HTMLInputElement>('input[type="file"]');
@@ -28,19 +46,27 @@ export const PhotoUpload = () => {
       if (!SUPPORTED_FORMATS.includes(file.type)) {
         setFileError('Only JPEG and JPG formats are supported.');
         setFileName('Upload your photo');
+        setPhoto(null);
         return;
       }
       if (file.size > FILE_SIZE_LIMIT) {
         setFileError('File size exceeds the 5MB limit.');
         setFileName('Upload your photo');
+        setPhoto(null);
         return;
       } else {
         setFileError('');
         setFileName(file.name);
+        setPhoto(file);
       }
     }
-    // event.target.value = '';
   };
+
+  useEffect(() => {
+    setFileName('Upload your photo');
+    setFileError('');
+    setPhoto(null);
+  }, [resetForm]);
 
   return (
     <UploadContainer>
@@ -56,7 +82,9 @@ export const PhotoUpload = () => {
           style={{ display: 'none' }}
         />
       </Label>
-      <ErrorMessage isVisible={!!fileError} aria-live='polite'>{fileError}</ErrorMessage>
+      <ErrorMessage isVisible={!!fileError} aria-live="polite">
+        {fileError}
+      </ErrorMessage>
     </UploadContainer>
   );
 };
