@@ -2,20 +2,21 @@ import styled from '@emotion/styled';
 
 export const UploadContainer = styled.div``;
 
-export const Label = styled.label`
+export const Label = styled.label<{ isVisible: boolean }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
   width: 100%;
   height: 54px;
-  border: 1px solid rgba(63, 63, 63, 0.23);
+  /* border: 1px solid rgba(63, 63, 63, 0.23); */
+  border: ${({ isVisible }) =>
+    !isVisible ? '1px solid rgba(63, 63, 63, 0.23)' : '2px solid #CB3D40'};
   border-radius: 4px;
-
   color: #7e7e7e;
 `;
 
-export const UpLoadButton = styled.button`
+export const UpLoadButton = styled.button<{ isVisible: boolean }>`
   all: unset;
 
   width: 83px;
@@ -26,16 +27,20 @@ export const UpLoadButton = styled.button`
   text-align: center;
 
   cursor: pointer;
-  border: 1px solid #000;
+
+  border: ${({ isVisible }) =>
+    !isVisible ? '1px solid #000' : '2px solid #CB3D40'};
+
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 
   background-color: inherit;
+  margin-left: -2px;
 
-  &:hover {
+  /* &:hover {
     color: #535bf2;
     border-color: #646cff;
-  }
+  } */
 `;
 
 export const Span = styled.span`

@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect} from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 // import { nanoid } from 'nanoid';
@@ -62,17 +62,21 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
     validateOnChange: true,
   });
 
-  useEffect(() => {
-    if (formik.isValid && formik.dirty) {
-      formik.submitForm();
-    }
-  }, [formik.values, formik.isValid]);
+  const { values, isValid, dirty, submitForm, resetForm: formikResetForm } = formik;
 
   useEffect(() => {
-    formik.resetForm();
+    if (isValid && dirty) {
+      submitForm();
+    }
+  }, [values, isValid, dirty, submitForm]);
+
+  useEffect(() => {
+    formikResetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetForm]);
 
   return (
+
     <Form onSubmit={formik.handleSubmit}>
       <TextField
         name="name"

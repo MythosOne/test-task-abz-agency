@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 import { UserInfoForm } from './UserInfoForm/UserInfoForm';
@@ -12,28 +12,43 @@ export const UserForm = () => {
   const [position, setPosition] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
   const [resetKey, setResetKey] = useState(0);
+  const [isSubmitButton, setIsSubmitButton] = useState(true);
 
-  console.log(" UserForm:", userInfo);
-  // console.log(" Position:", position);
-  // console.log(" Photo:", photo);
-  const isFormValid = !!( Object.keys(userInfo).length && position && photo);
-  console.log(isFormValid)
+  // console.log(' UserInfoForm:', userInfo);
+  // console.log(' Position:', position);
+  // console.log(' Photo:', photo);
+
+  // const isFormValid = !!( Object.keys(userInfo).length && position && photo);
+  // console.log(isFormValid)
+
+  useEffect(() => {
+    if (Object.keys(userInfo).length && position && photo) {
+      setIsSubmitButton(false);
+    } else {
+      setIsSubmitButton(true);
+    }
+  }, [userInfo, position, photo]);
 
   const onSubmit = () => {
     if (Object.keys(userInfo).length && position && photo) {
       const userData = { id: nanoid(), ...userInfo, position, photo };
+      setIsSubmitButton(true);
       console.log('Form submitted:', userData);
     } else {
       console.log('Not all forms are filled correctly');
+      setIsSubmitButton(true);
     }
     setResetKey((prevKey) => prevKey + 1);
+    setUserInfo({});
+    setPosition('');
+    setPhoto(null);
   };
 
   return (
     <FormContainer>
-      <UserInfoForm onSubmitData={setUserInfo} resetForm = {resetKey} />
-      <PostRadioGroup onSubmitData={setPosition} resetForm = {resetKey}/>
-      <PhotoUpload onSubmitData={setPhoto} resetForm = {resetKey}/>
+      <UserInfoForm onSubmitData={setUserInfo} resetForm={resetKey} />
+      <PostRadioGroup onSubmitData={setPosition} resetForm={resetKey} />
+      <PhotoUpload onSubmitData={setPhoto} resetForm={resetKey} />
       <Button
         style={{ marginTop: '-18px' }}
         variant="signUp"
@@ -42,7 +57,7 @@ export const UserForm = () => {
         }}
         label="Sign Up"
         type="submit"
-        disabled={!isFormValid}
+        disabled={isSubmitButton}
       >
         Sign Up
       </Button>

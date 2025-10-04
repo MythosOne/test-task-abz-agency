@@ -70,8 +70,8 @@ export const PhotoUpload: React.FC<PhotoUploadProps> = ({
 
   return (
     <UploadContainer>
-      <Label>
-        <UpLoadButton type="button" onClick={handleClick}>
+      <Label isVisible={!!fileError}>
+        <UpLoadButton type="button" onClick={handleClick} isVisible={!!fileError}>
           Upload
         </UpLoadButton>
         <Span>{fileName}</Span>
