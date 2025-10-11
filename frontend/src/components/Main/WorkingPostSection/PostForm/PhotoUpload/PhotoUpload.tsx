@@ -45,13 +45,15 @@ export const PhotoUpload: React.FC<PhotoUploadProps> = ({
     if (file) {
       if (!SUPPORTED_FORMATS.includes(file.type)) {
         setFileError('Only JPEG and JPG formats are supported.');
-        setFileName('Upload your photo');
+        // setFileName('Upload your photo');
+        setFileName(file.name);
         setPhoto(null);
         return;
       }
       if (file.size > FILE_SIZE_LIMIT) {
         setFileError('File size exceeds the 5MB limit.');
-        setFileName('Upload your photo');
+        // setFileName('Upload your photo');
+        setFileName(file.name);
         setPhoto(null);
         return;
       } else {

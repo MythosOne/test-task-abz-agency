@@ -2,9 +2,9 @@ import { useState, useEffect} from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 // import { nanoid } from 'nanoid';
-import { TextField } from '@mui/material';
+// import { TextField } from '@mui/material';
 
-import { Form } from './UserInfoForm.styled';
+import { Form, TextFieldStyled } from './UserInfoForm.styled';
 
 type UserInfoFormProps = {
   onSubmitData: (userInfo: {
@@ -78,7 +78,7 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
   return (
 
     <Form onSubmit={formik.handleSubmit}>
-      <TextField
+      <TextFieldStyled
         name="name"
         autoComplete="name"
         id="outlined-name"
@@ -97,7 +97,7 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
             : ''
         }
       />
-      <TextField
+      <TextFieldStyled
         name="email"
         autoComplete="email"
         id="outlined-email"
@@ -116,7 +116,7 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
             : ''
         }
       />
-      <TextField
+      <TextFieldStyled
         name="phone"
         autoComplete="phone"
         id="outlined-phone"

@@ -9,7 +9,6 @@ export const Label = styled.label<{ isVisible: boolean }>`
 
   width: 100%;
   height: 54px;
-  /* border: 1px solid rgba(63, 63, 63, 0.23); */
   border: ${({ isVisible }) =>
     !isVisible ? '1px solid rgba(63, 63, 63, 0.23)' : '2px solid #CB3D40'};
   border-radius: 4px;
@@ -36,14 +35,12 @@ export const UpLoadButton = styled.button<{ isVisible: boolean }>`
 
   background-color: inherit;
   margin-left: -2px;
-
-  /* &:hover {
-    color: #535bf2;
-    border-color: #646cff;
-  } */
 `;
 
 export const Span = styled.span`
+  font-size: 16px;
+  line-height: 26px;
+  color: #000;
   margin-left: 16px;
 `;
 
