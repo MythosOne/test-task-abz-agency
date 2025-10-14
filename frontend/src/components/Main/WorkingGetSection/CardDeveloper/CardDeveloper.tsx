@@ -1,4 +1,5 @@
 import { UserAvatar } from '@/assets/IconsComponents';
+import type { User } from '@/types/User';
 
 import {
   Card,
@@ -12,23 +13,15 @@ import {
 } from './CardDeveloper.styled';
 import { Tooltip } from '@mui/material';
 
-type User = {
-  name: string;
-  email: string;
-  phone: string;
-  position: string;
-  avatar: string;
-};
-
 interface CardDeveloperProps {
   user: User;
 }
 export const CardDeveloper: React.FC<CardDeveloperProps> = ({ user }) => {
-  const { name, email, phone, position } = user;
+  const { name, email, photo, phone, position } = user;
   return (
     <Card>
       <WrapperUserAvatar>
-        <UserAvatar />
+        <UserAvatar src={photo} alt="User Avatar" />
       </WrapperUserAvatar>
       <UserName>
         <Tooltip title={name}>

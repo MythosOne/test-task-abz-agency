@@ -1,20 +1,24 @@
 import { useState } from 'react';
-import { dataUser } from '@/data/data';
+// import { dataUser } from '@/data/data';
+import type { User } from '@/types/User';
 
 import { DeveloperList } from './DeveloperList/DeveloperList';
 
 import { Section, TitleSection } from './WorkingGetSection.styled';
 import { Button } from '@/components/Button/Button';
 
-export const WorkingGetSection = () => {
+type workingGetSectionProps = {
+  users: User[];
+}
+export const WorkingGetSection: React.FC<workingGetSectionProps> = ({users}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 6;
 
   const startIndex = (currentPage - 1) * usersPerPage;
   const endIndex = startIndex + usersPerPage;
-  const currentUsers = dataUser.slice(startIndex, endIndex);
+  const currentUsers = users.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(dataUser.length / usersPerPage);
+  const totalPages = Math.ceil(users.length / usersPerPage);
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import type { User } from '@/types/User';
 
 import { UserInfoForm } from './UserInfoForm/UserInfoForm';
 import { PostRadioGroup } from './PostRadioGroup/PostRadioGroup';
@@ -7,8 +8,12 @@ import { PhotoUpload } from './PhotoUpload/PhotoUpload';
 import { Button } from '@/components/Button/Button';
 
 import { FormContainer } from './UserForm.styled';
-export const UserForm = () => {
-  const [userInfo, setUserInfo] = useState({});
+
+type UserFormProps = {
+  onAddUser: (user: User) => void;
+};
+export const UserForm: React.FC<UserFormProps> = ({ onAddUser }) => {
+  const [userInfo, setUserInfo] = useState({ name: '', email: '', phone: '' });
   const [position, setPosition] = useState('');
   const [photo, setPhoto] = useState<File | null>(null);
   const [resetKey, setResetKey] = useState(0);
@@ -31,15 +36,20 @@ export const UserForm = () => {
 
   const onSubmit = () => {
     if (Object.keys(userInfo).length && position && photo) {
-      const userData = { id: nanoid(), ...userInfo, position, photo };
+      const newUser: User = { id: nanoid(), ...userInfo, position, photo };
       setIsSubmitButton(true);
-      console.log('Form submitted:', userData);
+      console.log('Form submitted:', newUser);
+      onAddUser(newUser);
     } else {
       console.log('Not all forms are filled correctly');
       setIsSubmitButton(true);
     }
     setResetKey((prevKey) => prevKey + 1);
-    setUserInfo({});
+    setUserInfo({
+      name: '',
+      email: '',
+      phone: '',
+    });
     setPosition('');
     setPhoto(null);
   };

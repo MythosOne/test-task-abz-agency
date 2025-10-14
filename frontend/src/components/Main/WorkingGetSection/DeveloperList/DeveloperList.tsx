@@ -1,15 +1,10 @@
+import type { User } from '@/types/User';
+
 import { CardDeveloper } from '@/components/Main/WorkingGetSection/CardDeveloper/CardDeveloper';
 import { CardList } from './DeveloperList.styled';
 
 type DeveloperListProps = {
-  users: {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    position: string;
-    avatar: string;
-  }[];
+  users: User[];
 };
 export const DeveloperList: React.FC<DeveloperListProps> = ({ users }) => {
   return (
