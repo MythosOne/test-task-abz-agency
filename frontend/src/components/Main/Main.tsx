@@ -9,12 +9,18 @@ import { WorkingPostSection } from '@/components/Main/WorkingPostSection/Working
 import { MainSection } from './Main.styled';
 
 export const Main = () => {
-  const [users, setUsers] = useState<User[]>(dataUser);
-  console.log("users:", users)
+  const [users, setUsers] = useState<User[]>(() => {
+    const stored = localStorage.getItem('users');
+    return stored ? JSON.parse(stored) : dataUser
+  });
+  // console.log("users:", users)
 
-  const addUser = (newUser : User) => {
-    setUsers((prev) => [...prev, newUser]);
-    localStorage.setItem('users', JSON.stringify([...users, newUser])); //! Save to localStorage
+  const addUser = (newUser: User) => {
+    setUsers((prev) => {
+      const updateUsers = [newUser, ...prev];
+      localStorage.setItem('users', JSON.stringify(updateUsers)); //! Save to localStorage
+      return updateUsers;
+    });
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { dataUser } from '@/data/data';
 import type { User } from '@/types/User';
 
@@ -9,8 +9,11 @@ import { Button } from '@/components/Button/Button';
 
 type workingGetSectionProps = {
   users: User[];
-}
-export const WorkingGetSection: React.FC<workingGetSectionProps> = ({users}) => {
+};
+export const WorkingGetSection: React.FC<workingGetSectionProps> = ({
+  users,
+}) => {
+  // console.log("users:", users)
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 6;
 
@@ -24,6 +27,10 @@ export const WorkingGetSection: React.FC<workingGetSectionProps> = ({users}) => 
       setCurrentPage((prev) => prev + 1);
     }
   };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [users]);
 
   return (
     <Section id="usersSection">

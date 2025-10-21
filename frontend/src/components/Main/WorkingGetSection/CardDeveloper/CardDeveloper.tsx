@@ -21,7 +21,7 @@ export const CardDeveloper: React.FC<CardDeveloperProps> = ({ user }) => {
   return (
     <Card>
       <WrapperUserAvatar>
-        <UserAvatar src={photo} alt="User Avatar" />
+        <UserAvatar src={photo} alt="User Avatar" /> //! Correct the error
       </WrapperUserAvatar>
       <UserName>
         <Tooltip title={name}>

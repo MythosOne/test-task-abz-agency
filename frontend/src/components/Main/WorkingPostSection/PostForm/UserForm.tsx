@@ -38,7 +38,7 @@ export const UserForm: React.FC<UserFormProps> = ({ onAddUser }) => {
     if (Object.keys(userInfo).length && position && photo) {
       const newUser: User = { id: nanoid(), ...userInfo, position, photo };
       setIsSubmitButton(true);
-      console.log('Form submitted:', newUser);
+      // console.log('Form submitted:', newUser);
       onAddUser(newUser);
     } else {
       console.log('Not all forms are filled correctly');
