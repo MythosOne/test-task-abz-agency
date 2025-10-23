@@ -8,4 +8,5 @@ export const Section = styled.section`
 
 export const TitleSection = styled.h2`
   margin: 0 0 50px 0;
+  text-align: center;
 `;

@@ -34,7 +34,7 @@ export const WorkingGetSection: React.FC<workingGetSectionProps> = ({
 
   return (
     <Section id="usersSection">
-      <TitleSection>Working Get Section</TitleSection>
+      <TitleSection>Working with Get Section</TitleSection>
       <DeveloperList users={currentUsers} />
       {currentPage < totalPages && (
         <Button

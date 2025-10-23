@@ -18,6 +18,14 @@ export const Section = styled.section`
 
   width: 100%;
 
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
+    height: 500px;
+  }
+
+  @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+    height: 600px;
+  }
+
   @media screen and (min-width: ${breakpoints.desktop}) and (max-width: ${breakpoints.largeDesktop}) {
     height: 650px;
   }
@@ -29,9 +37,14 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: ${breakpoints.desktop}) and (max-width: ${breakpoints.largeDesktop}) {
+  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
+    width: 328px;
+    height: 389px;
+  }
+
+  @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.largeDesktop}) {
     width: 380px;
-    height: 257px;
+    height: 323px;
   }
 `;
 
