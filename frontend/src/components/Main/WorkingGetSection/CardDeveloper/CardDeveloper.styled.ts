@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
+import { theme } from '@/theme/theme';
+
+const { breakpoints } = theme;
 
 export const Card = styled.li`
-  --card-desktop-2560-width: 330px;
-  --card-desktop-1024-width: 242px;
-  --card-tablet-768-width: 304px;
-  --card-mobile-360-width: 268px;
+  --card-mobile-360-width: 328px;
+  --card-tablet-768-width: 344px;
+  --card-desktop-1024-width: 282px;
+  --card-desktop-2560-width: 370px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   box-sizing: border-box;
-  width: 370px;
+  width: --card-mobile-360-width;
   height: 254px;
   border-radius: 16px;
   padding: 20px;
@@ -19,6 +22,18 @@ export const Card = styled.li`
   background-color: #fff;
 
   border: 1px solid #000;
+
+  @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+    width: var(--card-tablet-768-width);
+  }
+
+  @media screen and (min-width: ${breakpoints.desktop}) and (max-width: ${breakpoints.largeDesktop}) {
+    width: var(--card-desktop-1024-width);
+  }
+
+  @media screen and (min-width: ${breakpoints.largeDesktop}) {
+    width: var(--card-desktop-2560-width);
+  }
 `;
 
 export const WrapperUserAvatar = styled.div`
@@ -37,7 +52,19 @@ export const Name = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 330px;
+  width: calc(var(--card-mobile-360-width) - 40px);
+
+  @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
+    width: calc(var(--card-tablet-768-width) - 40px);
+  }
+
+  @media screen and (min-width: ${breakpoints.desktop}) and (max-width: ${breakpoints.largeDesktop}) {
+    width: calc(var(--card-desktop-1024-width) - 40px);
+  }
+
+  @media screen and (min-width: ${breakpoints.largeDesktop}) {
+    width: calc(var(--card-desktop-2560-width) - 40px);
+  }
 `;
 
 export const UserInfo = styled.div`
@@ -54,7 +81,6 @@ export const Position = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 330px;
 `;
 
 export const Email = styled.a`
@@ -63,7 +89,7 @@ export const Email = styled.a`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 330px;
+  width: calc(var(--card-mobile-360-width) - 40px);
 `;
 
 export const Phone = styled.a`

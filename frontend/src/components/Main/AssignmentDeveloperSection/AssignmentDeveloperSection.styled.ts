@@ -17,16 +17,13 @@ export const Section = styled.section`
   background-repeat: no-repeat;
 
   width: 100%;
-
-  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
-    height: 500px;
-  }
+  height: 500px;
 
   @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.desktop}) {
     height: 600px;
   }
 
-  @media screen and (min-width: ${breakpoints.desktop}) and (max-width: ${breakpoints.largeDesktop}) {
+  @media screen and (min-width: ${breakpoints.desktop}) {
     height: 650px;
   }
 `;
@@ -37,12 +34,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.tablet}) {
-    width: 328px;
-    height: 389px;
-  }
+  width: 328px;
+  height: 389px;
 
-  @media screen and (min-width: ${breakpoints.tablet}) and (max-width: ${breakpoints.largeDesktop}) {
+  @media screen and (min-width: ${breakpoints.tablet})  {
     width: 380px;
     height: 323px;
   }

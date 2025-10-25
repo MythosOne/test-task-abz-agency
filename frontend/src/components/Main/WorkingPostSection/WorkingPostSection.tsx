@@ -9,7 +9,7 @@ type WorkingPostSectionProps = {
 export const WorkingPostSection: React.FC<WorkingPostSectionProps> = ({onAddUser}) => {
   return (
     <Section id="signUpSection">
-      <TitleSection>Working with POST request</TitleSection>
+      <TitleSection>Working with <br/> POST request</TitleSection>
       <UserForm onAddUser={onAddUser}/>      
     </Section>
   );
