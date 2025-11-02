@@ -51,3 +51,5 @@ export const WorkingGetSection: React.FC<workingGetSectionProps> = ({
     </Section>
   );
 };
+
+WorkingGetSection.whyDidYouRender = true;

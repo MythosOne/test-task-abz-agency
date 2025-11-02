@@ -19,15 +19,20 @@ export const UserForm: React.FC<UserFormProps> = ({ onAddUser }) => {
   const [resetKey, setResetKey] = useState(0);
   const [isSubmitButton, setIsSubmitButton] = useState(true);
 
-  // console.log(' UserInfoForm:', userInfo);
+  // console.log('userInfo in UserForm', userInfo);
   // console.log(' Position:', position);
   // console.log(' Photo:', photo);
 
   // const isFormValid = !!( Object.keys(userInfo).length && position && photo);
   // console.log(isFormValid)
 
+  const isUserInfoFilled = Object.values(userInfo).every(
+    (value) => value !== '',
+  );
+
   useEffect(() => {
-    if (Object.keys(userInfo).length && position && photo) {
+    if (isUserInfoFilled && position && photo) {
+      console.log('isUserInfoFilled', isUserInfoFilled);
       setIsSubmitButton(false);
     } else {
       setIsSubmitButton(true);
@@ -35,20 +40,18 @@ export const UserForm: React.FC<UserFormProps> = ({ onAddUser }) => {
   }, [userInfo, position, photo]);
 
   const onSubmit = () => {
-    if (Object.keys(userInfo).length && position && photo) {
+    if (isUserInfoFilled && position && photo) {
       const newUser: User = { id: nanoid(), ...userInfo, position, photo };
       setIsSubmitButton(true);
-      // console.log('Form submitted:', newUser);
+      console.log('Form submitted:', newUser);
       onAddUser(newUser);
     } else {
       console.log('Not all forms are filled correctly');
       setIsSubmitButton(true);
     }
     setResetKey((prevKey) => prevKey + 1);
-    setUserInfo({
-      name: '',
-      email: '',
-      phone: '',
+    setUserInfo((prev) => {
+      return { ...prev, name: '', email: '', phone: '' };
     });
     setPosition('');
     setPhoto(null);

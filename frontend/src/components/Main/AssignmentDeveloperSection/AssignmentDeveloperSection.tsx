@@ -29,3 +29,5 @@ export const AssignmentDeveloperSection = () => {
     </Section>
   );
 };
+
+AssignmentDeveloperSection.whyDidYouRender = true;

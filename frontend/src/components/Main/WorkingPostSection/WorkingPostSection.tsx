@@ -14,3 +14,5 @@ export const WorkingPostSection: React.FC<WorkingPostSectionProps> = ({onAddUser
     </Section>
   );
 };
+
+WorkingPostSection.whyDidYouRender = true;

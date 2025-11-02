@@ -1,8 +1,7 @@
-import { useState, useEffect} from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-// import { nanoid } from 'nanoid';
-// import { TextField } from '@mui/material';
+import debounce from 'lodash/debounce';
 
 import { Form, TextFieldStyled } from './UserInfoForm.styled';
 
@@ -19,18 +18,13 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
   onSubmitData,
   resetForm,
 }) => {
-  const [userInfo, setUserInfo] = useState({});
-
-  useEffect(() => {
-    if (Object.keys(userInfo).length !== 0) {
-      onSubmitData(userInfo as { name: string; email: string; phone: string });
-    }
-  }, [userInfo, onSubmitData]);
-
   const UserSchema = object().shape({
     name: string()
       .required('Required')
-      .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/, 'Only letters and spaces are allowed')
+      .matches(
+        /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s]+$/,
+        'Only letters and spaces are allowed',
+      )
       .min(2),
     email: string()
       .required('Required')
@@ -41,7 +35,7 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
     phone: string()
       .required('Required')
       .matches(
-        /^\+380[0-9\s()-]*$/,
+        /^\+380\s?\(?\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
         'Phone number must start with +380 and contain only numbers',
       ),
   });
@@ -53,22 +47,31 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
       phone: '',
     },
     validationSchema: UserSchema,
-    onSubmit: (values) => {
-      setUserInfo({ ...values });
-      // console.log('Отправлено', values);
-    },
+    onSubmit: () => {},
     validateOnMount: false,
     validateOnBlur: true,
     validateOnChange: true,
   });
 
-  const { values, isValid, dirty, submitForm, resetForm: formikResetForm } = formik;
+  const { values, isValid, resetForm: formikResetForm } = formik;
+
+  const debounceSubmit = useMemo(
+    () =>
+      debounce((values) => {
+        onSubmitData(values);
+      }, 300),
+    [onSubmitData],
+  );
 
   useEffect(() => {
-    if (isValid && dirty) {
-      submitForm();
+    debounceSubmit.cancel();
+    if (isValid) {
+      debounceSubmit(values);
+    } else {
+      onSubmitData({ name: '', email: '', phone: '' });
     }
-  }, [values, isValid, dirty, submitForm]);
+    return () => debounceSubmit.cancel();
+  }, [values, isValid, debounceSubmit]);
 
   useEffect(() => {
     formikResetForm();
@@ -76,7 +79,6 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({
   }, [resetForm]);
 
   return (
-
     <Form onSubmit={formik.handleSubmit}>
       <TextFieldStyled
         name="name"
